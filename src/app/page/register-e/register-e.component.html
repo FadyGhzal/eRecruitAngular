@@ -1,0 +1,76 @@
+<div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3" style="margin-left: 270px ;">
+  <div class="card" style="width: 700px;">
+    <div class="card-header">
+       <h4>Inscrivez-vous en tant qu'entreprise</h4>
+    </div>
+    <form [formGroup]="SignupForm" (ngSubmit)="Register(SignupForm)"  autocomplete="off">
+    <p class="tip"><i class="material-icons">lock</i>Informations du compte</p>
+    <div class="card-form" >
+      <div class="row">
+        <div class="col-md-6">
+        
+        <mat-form-field color="accent">
+          <input type="text" formControlName="nom" autocomplete="off" matInput placeholder="Nom de l'entreprise"/>
+        </mat-form-field>
+        </div>
+        <div class="col-md-6">
+
+        <mat-form-field color="accent">
+          <input type="text" formControlName="email" autocomplete="off" matInput placeholder="Adresse email"/>
+        </mat-form-field>
+        </div>
+
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+        <mat-form-field color="accent">
+          <input type="password" formControlName="pass" autocomplete="off" matInput placeholder="Mot de passe"/>
+        </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+
+        <mat-form-field color="accent">
+          <input type="password" formControlName="cpass" autocomplete="off" matInput placeholder="Confirmation de mot de passe"/>
+        </mat-form-field>
+      </div>
+      </div>
+
+      <p class="tip"><i class="material-icons">work</i>Informations de l'entreprise</p>
+
+      <div class="row">
+        <div class="col-md-6">
+       <mat-form-field color="accent">
+         <input type="text" formControlName="domaine" autocomplete="off" matInput placeholder="Domaine de l'entreprise"/>
+       </mat-form-field>
+       </div>
+
+       <div class="col-md-6">
+
+       <mat-form-field color="accent">
+         <input type="text" formControlName="site" autocomplete="on" matInput placeholder="Site web"/>
+       </mat-form-field>
+     </div>
+     </div>
+
+     <div class="row">
+      <div class="col-md-6">
+        <mat-form-field color="accent">
+          <input type="text" formControlName="telephone" autocomplete="on" matInput placeholder="Telephone"/>
+        </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent">
+            <input type="text" formControlName="adresse" autocomplete="on" matInput placeholder="Adresse"/>
+          </mat-form-field>
+          </div>
+      </div>
+
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="registerbtn" mat-button  [disabled]="!SignupForm.valid">S'inscrire</button>
+
+    </div>
+  </form>
+  </div>
+</div>

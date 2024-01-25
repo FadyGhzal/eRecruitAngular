@@ -1,0 +1,38 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'">
+<app-navbar title="Les Annonces de travail" icon="work"></app-navbar>
+  <hr>
+  <div class="row" style="margin-left: -90px;" >
+    <div class="col-lg-4" *ngFor="let t of travails">
+            <div class="col-md-4 page-title">
+              <div class="card card-raised">
+                <h6>{{t.NomEntreprise}}</h6>
+                <div class="icon">
+                  <i class="material-icons">work</i>
+                </div>
+                <div class="card-body">
+                <h5 class="card-title" style="color:rgb(99, 99, 99); font-weight: bold;margin-top: 15px; margin-bottom: -40px;">{{t.poste_travail}}</h5>
+                <hr style="border: none;"><br>
+                <p class="card-description text-center" style="margin-bottom:-10px;">
+                  Description de stage : {{t.desc_travail}}<br>
+                  Niveau minimum : Bac+{{t.niveau}}<br>
+                  Duree de stage : {{t.duree_travail}} Heures<br>
+                  Governorat de stage : {{t.govern_travail}}<br>
+                </p>
+                <hr style="border: none;"><br>
+              </div>
+                <div class="card-footer" style="margin-top:20px;">
+                  <td><button class="btn btn-light" (click)="openSeeCriteres(t.id_travail);">Voir criteres  <span class="glyphicon glyphicon-eye-open"></span> </button></td>
+                  <td><button *ngIf="(t.recruiting == 0)" disabled class="btn btn-primary" >Postuler  <span class="glyphicon glyphicon-send"></span> </button></td>
+  
+                    <td><button *ngIf="t.recruiting == 1 && t.niveau > candidatniveau" disabled class="btn btn-primary" (click)="Postuler(t.id_entreprise,t.id_travail,t.niveau);">Postuler  <span class="glyphicon glyphicon-send"></span> </button></td>
+                    <td><button *ngIf="t.recruiting == 1 && t.niveau < candidatniveau" class="btn btn-primary" (click)="Postuler(t.id_entreprise,t.id_travail,t.niveau);">Postuler  <span class="glyphicon glyphicon-send"></span> </button></td>
+          
+                  
+                </div>
+              </div>
+              
+            </div>
+  </div>
+</div>
+</div>
+    

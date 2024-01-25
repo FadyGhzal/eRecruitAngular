@@ -1,0 +1,20 @@
+>For candidat
+	Add domaine to candidat :
+	Informatique 
+	Mecanique
+	Electrique
+	Industrielle
+	Business
+
+>For Liste candidats :
+	• Search by domaine 
+          Les domaines seront en un input de type select
+	  Filter candidats by domaine and hide others that doesn't match with this domaine
+	• Search by niveau 
+	  Les niveau seront aussi en un input de type select (avec des entiers de 0 à 8) pour indiquer le niveau Bac + ?
+	• Select candidats by clicking on a star
+	  Favorite candidats
+	  Entreprise will have another Database table that saves favorited candidats's Ids
+	  Favorite candidats component will get the fav candidats data by theirs Ids
+
+

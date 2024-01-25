@@ -1,0 +1,83 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'">
+  <div class="row" style="margin-top: 30px;">
+
+
+    <div class="col-md-8" style=" width: 100%;">
+      <div class="card" style="width: 700px; margin-left: 150px ;">
+        <div class="card-header">
+          <i class="material-icons">perm_identity</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Terminer votre profil -
+            <small class="category">Cette étape vous donne accès à toutes les fonctionnalités de l'application.</small>
+          </h4>
+          <div  *ngFor="let p of profiledata">
+            <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile(updateProfileForm.value)">
+              <div class="row"  >
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="nom" placeholder="Nom et Prenom" value="{{p.nom}}">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="cin" placeholder="NCIN" value="{{p.cin}}">
+                  </mat-form-field>
+                </div>
+  
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="age" placeholder="Age" value="{{p.age}}">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="telephone" placeholder="Télephone" value="{{p.telephone}}">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="adresse" placeholder="Adresse" value="{{p.adresse}}">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="email" placeholder="Addresse e-mail" value="{{p.email}}">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6">
+              <mat-form-field style="width: 100%;">
+                <mat-label> <mat-icon aria-hidden="false" aria-label="Example home icon">work</mat-icon> Selectionner votre domaine 
+    
+                </mat-label>
+                <mat-select formControlName="domaine" required>
+                  <mat-option value="Informatique">Informatique</mat-option>
+                  <mat-option value="Mecanique">Mecanique</mat-option>
+                  <mat-option value="Electrique">Electrique</mat-option>
+                  <mat-option value="Business">Business</mat-option>
+                  <mat-option value="Industrie">Industrie</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+              </div>
+             
+              <div class="row action-btn">
+                
+              <button mat-dialog-close mat-raised-button style="margin-right: 5px;"  class="btn btn-light">Annuler</button>
+                <button md-raised-button type="submit" class="btn btn-rose">Terminer profile</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

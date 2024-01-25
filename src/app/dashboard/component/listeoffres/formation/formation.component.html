@@ -1,0 +1,47 @@
+<div class="container" *ngIf="isLogged && accountType == 'Admin'">
+  <app-navbar title="Les Annonces de formation" icon='school'></app-navbar>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="material-icons">school</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Gestion des formations</h4>
+          <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+            <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+          </mat-form-field>
+          <button mat-mini-fab class="search-btn" style="background-color: #000000;"><i class="material-icons" style="font-size:18px;">search</i></button>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-dark">
+                <tr>
+                  <th>Nom de l'entreprise</th>
+                  <th>Nom de formation</th>
+                  <th>Domaine de formation</th>
+                  <th>Description </th>
+                  <th>Duree</th>
+                  <th>Niveau minimum</th>
+                  <th>Prix</th>
+                  <td colspan="2"></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let f of formations" style="text-align: center;">
+                  <td>{{f.NomEntreprise}}</td>
+                  <td>{{f.nom_formation}}</td>
+                  <td>{{f.domaine_formation}}</td>
+                  <td>{{f.duree_formation}}</td>
+                  <td>{{f.desc_formation}}</td>
+                  <td>Bac + {{f.niveau_formation}}</td>
+                  <td class="text-primary">{{f.prix_formation}}</td>
+                  <td><button class="btn btn-danger" (click)="deleteOffre(f.id_formation);" >Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

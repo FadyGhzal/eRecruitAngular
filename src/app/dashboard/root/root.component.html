@@ -1,0 +1,10 @@
+<div class="wrapper" *ngIf="isLogged;">
+  <div class="sidebar-panel" id="sidebar" [style.background-color]="bgColor">
+
+    <div class="sidebar-background"></div>
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel" id="main-panel" >
+    <router-outlet></router-outlet>
+  </div>
+</div>

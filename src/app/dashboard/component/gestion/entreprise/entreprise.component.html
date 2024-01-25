@@ -1,0 +1,57 @@
+<div class="container" *ngIf="isLogged && accountType == 'Admin'">
+  <app-navbar title="Les Entreprises" icon='store'></app-navbar>
+  <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="material-icons">work</i>
+      </div>
+      <div class="card-content">
+        
+        <h4 class="card-title">Gestion des entreprises</h4>
+        <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+          <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+        </mat-form-field>
+        <button mat-mini-fab class="search-btn" style="background-color: #000000;"><i class="material-icons" style="font-size:18px;">search</i></button>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary fw-bold" style="color:black;">
+              <tr>
+                <th>Nom d'entreprise</th>
+                <th>Domaine</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Site web</th>
+                <th>Telephone</th>
+                <th colspan="2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of entreprises">
+                <td>{{e.nom}}</td>
+                <td>{{e.domaine}}</td>
+
+                <td>{{e.adresse}}</td>
+                <td>{{e.email}}</td>
+                
+                <td>{{e.site}}</td>
+                <td>{{e.telephone}}</td>
+
+                <div *ngIf="e.isVerified == 0">
+                <td><button (click)="controlEntreprise(e.id,'Accept');" class="btn btn-success">Valider  <span class="glyphicon glyphicon-ok-circle"></span></button></td>
+                <td><button (click)="controlEntreprise(e.id,'Decline');" class="btn btn-danger">Refuser  <span class="glyphicon glyphicon-remove-circle"></span> </button></td>
+                </div>
+                <div *ngIf="e.isVerified == 1">
+                <td><button (click)="controlEntreprise(e.id,'Delete');" class="btn btn-danger">Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                
+              </div>
+              </tr>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

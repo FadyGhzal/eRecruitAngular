@@ -1,0 +1,54 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'" >
+  <app-navbar title="Mes entretients" icon="contact_mail"></app-navbar>
+  <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="material-icons">contact_mail</i>
+      </div>
+      <div class="card-content">
+        
+        <h4 class="card-title">Mes entretients</h4>
+        <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+          <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+        </mat-form-field>
+        <button mat-mini-fab class="search-btn" style="background-color: #d65c54;"><i class="material-icons" style="font-size:18px;">search</i></button>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary fw-bold" style="color:black;">
+              <tr>
+                <th>Nom Candidat</th>
+                <th>NCIN Candidat </th>
+                <th>Poste Travail</th>
+                <th>Date Rendezvous </th>
+                <th>Test</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of rendezvous">
+                <td>{{e.NomCandidat}}</td>
+                <td>{{e.CinCandidat}}</td>
+                <td>{{e.PosteTravail}}</td>
+                <td>{{e.date_rdv}}</td>
+                <td *ngIf="e.TestLink == NULL"><a  style="color:rgb(220,220,220)" >N/A</a></td>
+                <td *ngIf="e.TestLink != NULL"><a  href="{{e.TestLink}}">Lien de test</a></td>
+                <div *ngIf="e.Status == 0">
+                 <td>PENDING</td>
+                </div>
+                <div *ngIf="e.Status == 1">
+                  <td>Entretient refusé.</td>
+              </div>
+              <div *ngIf="e.Status == 2">
+                <td>Entretient Accepté.</td>
+            </div>
+              </tr>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

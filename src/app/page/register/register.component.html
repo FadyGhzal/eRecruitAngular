@@ -1,0 +1,23 @@
+<div class="container" *ngIf="!isLogged;">
+  <div class="background"></div>
+  <div class="container">
+    <div class="row">
+      <app-header></app-header>
+    </div>
+
+
+    <mat-tab-group [color]="white" [backgroundColor]="red" mat-align-tabs="center">
+      <mat-tab label="Sign up as Entreprise" > 
+        <mat-card style="background-color: rgba(255, 255, 255 , 0);">
+          <app-register-e></app-register-e>
+        </mat-card> 
+      </mat-tab>
+      <mat-tab label="Sign up as Candidat">
+        <mat-card style="background-color: rgba(255, 255, 255 , 0); border: none; ">
+          <app-register-c></app-register-c>
+        </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+
+  </div>
+</div>

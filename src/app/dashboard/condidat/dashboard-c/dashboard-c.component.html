@@ -1,0 +1,105 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'">
+  <app-navbar title="Dashboard Candidat" icon='dashboard'></app-navbar>
+  <div class="row" style="margin-top: 30px" *ngIf="stats;">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <app-figurecard
+        title="{{stats[0]['nbE']}} "
+        headerIcon="store"
+        category="Entreprises"
+
+        linearColor="linear-gradient(60deg, #ffa726, #fb8c00)"
+        boxShadow="0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4)">
+      </app-figurecard>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <app-figurecard
+        title="{{stats[0]['nbT']}} "
+        headerIcon="work"
+        category="Travails"
+
+        linearColor="linear-gradient(60deg, #ef5350, #e53935)"
+        boxShadow="0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4)">
+      </app-figurecard>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <app-figurecard
+        title="{{stats[0]['nbF']}} "
+        headerIcon="work"
+        category="Formations"
+
+        linearColor="linear-gradient(60deg, #66bb6a, #43a047)"
+        boxShadow="0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4)">
+      </app-figurecard>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <app-figurecard
+        title="{{stats[0]['nbS']}} "
+        headerIcon="work"
+        category="Stages"
+
+        linearColor="linear-gradient(60deg, #26c6da, #00acc1)"
+        boxShadow="0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4)">
+      </app-figurecard>
+    </div>
+  </div>
+  <!-- SHORTCUTS -->
+  <div class="row" style="margin-top: 10px">
+    <a href="dashboard/components/travails">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <app-imagecard
+        image="../../../assets/img/annonce1.jpg"
+        title="Les Annonces de Travail"
+        desc="Acceder à la liste des Annonces de travail.">
+      </app-imagecard>
+    </div>
+  </a>
+  <a href="dashboard/components/stages">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <app-imagecard
+        image="../../../assets/img/satge.png"
+        title="Les Annonces de Stage"
+        desc="Accéder a la liste des Annonces de stage.">
+      </app-imagecard>
+    </div>
+    </a>
+    <a href="dashboard/components/formations">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <app-imagecard
+        image="../../../assets/img/formation1.jpg"
+        title="Les Annonces de Formation "
+        desc="Accéder a la liste des Annonces de formation.">
+      </app-imagecard>
+    </div>
+    </a>
+  </div>
+
+
+</div>
+
+<!-- 
+<div class="container" *ngIf="true">
+  <div class="verify">
+    <table style="width: 100%;">
+         <tr>
+          <th>Company Name</th>
+          <th>Company Description</th>
+          <th colspan="2"></th>
+         </tr>
+         <tr *ngFor="let c of companies">
+          <td>{{c.Name}}</td>
+          <td>{{c.Description}}</td>
+          <td *ngIf="c.Verified == 0">
+          <button style="background-color: green;" (click)="verify(c.Name)">Accept</button>
+          </td>
+            <td *ngIf="c.Verified == 0">
+             <button style="background-color: red;" (click)="decline(c.Name)">Decline</button>
+            </td>
+
+            <td colspan="2" *ngIf="c.Verified == 1">
+                  Company verification done.
+            </td>
+        </tr>
+    </table>
+  </div>
+</div>
+-->

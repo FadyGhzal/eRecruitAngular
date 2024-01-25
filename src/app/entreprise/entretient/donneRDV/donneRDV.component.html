@@ -1,0 +1,28 @@
+<div class="container">
+
+        <div class="card">
+          <div class="card-content" style="width:400px;">
+            <h3>Assigner une date de Rendez-vous</h3>
+                <form [formGroup]="assignRDVform" (ngSubmit)="acceptDemande(assignRDVform.value)">
+               
+             
+                  <div class="row">
+                    <div class="col-md-16">
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Choisir une date</mat-label>
+                        <input matInput formControlName="date_RDV" type="date" required>
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                  
+                      </mat-form-field>
+                    </div>
+                  </div>
+  
+              <div class="row action-btn">
+                <input [disabled]="!assignRDVform.valid" md-raised-button style="width:100%;" type="submit" mat-dialog-close class="btn btn-rose" value="Assigner"/>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+</div>

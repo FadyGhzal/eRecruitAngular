@@ -1,0 +1,44 @@
+<div class="container" style="width: 600px;">
+<div *ngFor="let c of criteres;">
+  <button style="margin-left: 93%;" mat-dialog-close mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+    <mat-icon>close</mat-icon>
+  </button>
+<mat-list role="list">
+
+  <mat-list-item role="listitem" style="height:20px;">
+    <b style="font-weight: bold; ">Les languages : </b>
+    </mat-list-item>
+
+  <div  *ngFor="let l of c.Langue.language">
+  <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+    <img *ngIf="l == 'Anglais';" src="../../../../assets/flags/gb.svg"  height="15px" width="30px"/>
+    <img *ngIf="l == 'Arabe';" src="../../../../assets/flags/tn.svg"  height="15px" width="30px"/>
+    <img *ngIf="l == 'Francais';" src="../../../../assets/flags/fr.svg"  height="15px" width="30px"/>
+    {{l}}</mat-list-item> 
+    </div>
+    <mat-list-item role="listitem" style="height:20px;">
+      <b style="font-weight: bold;">Diplome demandé :</b>
+
+      {{c.Diplome}}
+      </mat-list-item>
+      <mat-list-item role="listitem" style="height:20px;">
+        <b style="font-weight: bold;">Année de diplome :</b>
+{{c.AnneeDiplome}}
+      </mat-list-item>
+
+      <mat-list-item role="listitem" style="height:20px;">
+        <b style="font-weight: bold;">Niveau  :</b>
+Bac + {{c.Bac}}
+      </mat-list-item>
+
+      <mat-list-item role="listitem" style="height:20px;">
+        <b style="font-weight: bold;">Experience :</b> {{c.Experience}} année(s)
+      </mat-list-item>
+
+
+
+
+</mat-list>
+
+  </div>
+</div>

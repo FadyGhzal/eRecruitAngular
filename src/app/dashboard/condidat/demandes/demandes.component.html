@@ -1,0 +1,189 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'">
+  <app-navbar title="Mes demandes" icon='history'> </app-navbar>
+  <div class="row">
+  <div class="col-md-12">
+
+
+    <form [formGroup]="dataForm" >
+      Veulliez selectionner le type des offres : 
+    <select formControlName="typeoff" (change)="onChange($event)" class="form-control">
+      <option value="Travail" selected>Travails</option>
+      <option value="Stage">Stages</option>
+      <option value="Formation">Formations</option>
+   </select> 
+   </form>
+
+
+    <div class="card"  *ngIf="selectedtype == 'Travail'">
+      <div class="card-header">
+        <i class="material-icons">history</i>
+      </div>
+      
+      <!-- DEMANDES DE TRAVAIL -->
+      <div class="card-content">
+        
+        <h4 class="card-title">Demandes de travails</h4>
+        <mat-form-field color="#d65c54" style="width: 95%; margin-top:10px;">
+          <input matInput  (keyup)="applyFilterTravail($event)" type="search" placeholder="Search">
+        </mat-form-field>
+        <button mat-mini-fab class="search-btn" style="background-color: #d65c54;"><i class="material-icons" style="font-size:18px;">search</i></button>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary fw-bold" style="color:black;">
+              <tr>
+                <th>Poste de travail</th>
+                <th>Nom de l'entreprise</th>
+                <th>Date</th>
+                <th colspan="2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of demandes">
+
+                <td>{{d.PosteTravail}}</td>
+                <td>{{d.NomEntreprise}}</td>
+                <td>{{d.DATE}}</td>
+                <td *ngIf="d.Status == 0" style="color : rgb(20)">
+                  <mat-chip color="accent" selected>
+                    <b>Pending</b>   
+                  	<mat-icon>access_time</mat-icon>
+                  </mat-chip>
+                </td>
+                <div *ngIf="d.Status == 1">
+                <td>
+                  <mat-chip color="warn" selected>
+                  <b>Declined</b> 	<mat-icon>cancel</mat-icon>
+                  </mat-chip>
+                </td>
+              </div>
+              <div *ngIf="d.Status == 2">
+                <td >
+                  <mat-chip color="primary" selected>
+                    <b>Accepted</b>  <mat-icon>check</mat-icon>
+                </mat-chip>
+              </td>
+              <td>Date de rendezvous : {{d.DATERDV}}</td>
+            </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+      <!-- DEMANDES DE Formation -->
+      <div class="card"  *ngIf="selectedtype == 'Formation'">
+        <div class="card-header">
+          <i class="material-icons">history</i>
+        </div>
+      <div class="card-content" >
+        
+        <h4 class="card-title">Demandes de Formation</h4>
+        <mat-form-field color="#d65c54" style="width: 95%; margin-top:10px;">
+          <input matInput  (keyup)="applyFilterFormation($event)" type="search" placeholder="Search">
+        </mat-form-field>
+        <button mat-mini-fab class="search-btn" style="background-color: #d65c54;"><i class="material-icons" style="font-size:18px;">search</i></button>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary fw-bold" style="color:black;">
+              <tr>
+                <th>Nom de formation</th>
+                <th>Nom de l'entreprise</th>
+                <th>Date</th>
+                <th colspan="2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let f of demandes_formation">
+
+                <td>{{f.Nomformation}}</td>
+                <td>{{f.NomEntreprise}}</td>
+                <td>{{f.DATE}}</td>
+                <td *ngIf="f.Status == 0" style="color : rgb(20)">
+                  <mat-chip color="accent" selected>
+                    <b>Pending</b>   
+                  	<mat-icon>access_time</mat-icon>
+                  </mat-chip>
+                </td>
+                <div *ngIf="f.Status == 1">
+                <td>
+                  <mat-chip color="warn" selected>
+                  <b>Declined</b> 	<mat-icon>cancel</mat-icon>
+                  </mat-chip>
+                </td>
+              </div>
+              <div *ngIf="f.Status == 2">
+                <td >
+                  <mat-chip color="primary" selected>
+                    <b>Accepted</b>  <mat-icon>check</mat-icon>
+                </mat-chip>
+              </td>
+            </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+
+
+
+            <!-- DEMANDES DE STAGE -->
+            <div class="card"  *ngIf="selectedtype == 'Stage'">
+              <div class="card-header">
+                <i class="material-icons">history</i>
+              </div>
+            <div class="card-content">
+        
+              <h4 class="card-title">Demandes de Stage</h4>
+              <mat-form-field color="#d65c54" style="width: 95%; margin-top:10px;">
+                <input matInput  (keyup)="applyFilterTravail($event)" type="search" placeholder="Search">
+              </mat-form-field>
+              <button mat-mini-fab class="search-btn" style="background-color: #d65c54;"><i class="material-icons" style="font-size:18px;">search</i></button>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="text-primary fw-bold" style="color:black;">
+                    <tr>
+                      <th>Poste de Stage</th>
+                      <th>Nom de l'entreprise</th>
+                      <th>Date</th>
+                      <th colspan="2">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let s of demandes_stage">
+      
+                      <td>{{s.Postestage}}</td>
+                      <td>{{s.NomEntreprise}}</td>
+                      <td>{{s.DATE}}</td>
+                      <td *ngIf="s.Status == 0" style="color : rgb(20)">
+                        <mat-chip color="accent" selected>
+                          <b>Pending</b>   
+                          <mat-icon>access_time</mat-icon>
+                        </mat-chip>
+                      </td>
+                      <div *ngIf="s.Status == 1">
+                      <td>
+                        <mat-chip color="warn" selected>
+                        <b>Declined</b> 	<mat-icon>cancel</mat-icon>
+                        </mat-chip>
+                      </td>
+                    </div>
+                    <div *ngIf="s.Status == 2">
+                      <td >
+                        <mat-chip color="primary" selected>
+                          <b>Accepted</b>  <mat-icon>check</mat-icon>
+                      </mat-chip>
+                    </td>
+                  </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+
+
+
+</div>
+</div>

@@ -1,0 +1,116 @@
+<div class="container">
+  <app-navbar title="Homepage" icon="home"></app-navbar>
+ 
+    <h1>Bienvenue à e-Recruit</h1>
+
+
+
+  
+    <div *ngIf="accountType == 'Admin'">
+      <h2 class="text-center">Admin notes</h2>
+      <form class="review" name="f" [formGroup]='notesform' (ngSubmit)="SaveData(notesform.value)" >
+        <label for="exampleFormControlTextarea1">Tes notes</label>
+      
+        <div *ngFor="let item of notesdata">
+        <textarea  class="form-control" id="exampleFormControlTextarea1" type="text" value="{{item.content}}"  formControlName='content' id='textareaC' >
+        </textarea>
+      </div>
+        <input type="submit" class="notesbtn" style="width:486px" value="Enregistrer les notes">
+        </form>
+      
+    </div>
+
+    <div *ngIf="accountType == 'Candidat'">
+    <h3>Comment utiliser E-recruit?</h3>
+    <h4 style="color: #ec407a">En tant que candidat : </h4>
+    <div id="content">
+      <ul class="timeline">
+
+        
+            <li class="stepnumber" data-date="1st Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Terminer votre profil</h1>
+                <div class="stepcontent">
+                  Afin que vous ayez accès à toutes les fonctionnalités de notre application, vous devez compléter votre profil.
+                </div>
+              </div>
+            </li>
+
+            <li class="stepnumber" data-date="2nd Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Terminer votre CV</h1>
+                <div class="stepcontent">
+                  complétez votre CV dans la rubrique profil pour avoir le droit de postuler à une offre et faciliter la sélection des candidats pour les entreprises.
+                </div>
+              </div>
+            </li>
+
+            <li class="stepnumber" data-date="3rd Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Chercher un offre</h1>
+                <div class="stepcontent">
+                  Trouvez un emploi, un stage ou une formation dans la liste des annonces
+                </div>
+              </div>
+            </li>
+
+            <li class="stepnumber" data-date="4th Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Postuler</h1>
+                <div class="stepcontent">
+                  Postuler à un emploi, un stage ou une formation et attendre la réponse de l'entreprise
+                </div>
+              </div>
+            </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- HOW TO USE ERECRUIT AS AN ENTREPRISE  -->
+
+  <div *ngIf="accountType == 'Entreprise'">
+    <h3>Comment utiliser E-recruit?</h3>
+    <h4 style="color: #6394d4">En tant que entreprise : </h4>
+    <div id="content">
+      <ul class="etimeline">
+
+        
+            <li class="stepnumber" data-date="1st Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Terminer votre profil</h1>
+                <div class="stepcontent">
+                  Afin que vous ayez accès à toutes les fonctionnalités de notre application, vous devez compléter votre profil.
+                </div>
+              </div>
+            </li>
+
+            <li class="stepnumber" data-date="2nd Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Ajouter des offres</h1>
+                <div class="stepcontent">
+                  Ajouter des emplois, des stages et des offres de formation
+                </div>
+              </div>
+            </li>
+
+            <li class="stepnumber" data-date="3rd Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Rechercher des candidats</h1>
+                <div class="stepcontent">
+                  Recherchez des candidats par niveau, domaine et accédez à leur CV pour présélectionner les candidats que vous pouvez ajouter à votre liste de favoris.
+                </div>
+              </div>
+            </li>
+
+            <li class="stepnumber" data-date="4th Step">
+              <div class="stepinfo">
+                <h1 class='steptittle'>Gérer les demandes</h1>
+                <div class="stepcontent">
+                  Accepter et refuser les demandes et assigner un entretien pour les demandes de travails.
+                </div>
+              </div>
+            </li>
+      </ul>
+    </div>
+  </div>

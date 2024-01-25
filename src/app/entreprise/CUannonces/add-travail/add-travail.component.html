@@ -1,0 +1,237 @@
+<div class="container">
+
+  <mat-tab-group [color]="white" [backgroundColor]="red" mat-align-tabs="center">
+    <mat-tab label="Ajouter annonce de travail" > 
+      <mat-card style="background-color: rgba(255, 255, 255 , 0);">
+        
+
+        <div class="card">
+          <div class="card-content">
+
+            <mat-horizontal-stepper [linear]="true" #stepper>
+              <mat-step [stepControl]="TravailForm">
+                <form [formGroup]="TravailForm">
+                  <ng-template matStepLabel>Entrer données de poste de travail</ng-template>
+             
+                  <div class="row">
+                    <div class="col-md-6">
+                      <mat-form-field color="accent">
+                        <input matInput type="text" placeholder="PostedeTravail" formControlName="poste" name="poste" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                      <mat-form-field color="accent">
+                        <input matInput type="text" placeholder="Descriptiondeposte" formControlName="desc"  name="desc" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <mat-form-field color="accent">
+                        <input matInput type="text" placeholder="Durée de Travail" formControlName="duree" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                      <mat-form-field color="accent">
+                        <input matInput type="text" placeholder="Gouvernorat" formControlName="govern" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div>
+                    <button [disabled]="!TravailForm.valid" mat-button matStepperNext>Suivant</button>
+                  </div>
+                </form>
+              </mat-step>
+
+
+              <mat-step [stepControl]="critereForm">
+                <form [formGroup]="critereForm">
+                  <ng-template matStepLabel>Entrer les criteres pour choisir les candidats</ng-template>
+                  <mat-form-field>
+                    <input matInput placeholder="Niveau Bac+ [1,2,3..8]" formControlName="bac" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput placeholder="Period d'experience en année" formControlName="experience" required>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Précedent</button>
+                    <button [disabled]="!critereForm.valid" mat-button matStepperNext>Suivant</button>
+                  </div>
+                </form>
+              </mat-step>
+
+              <mat-step [stepControl]="langueForm">
+                <form [formGroup]="langueForm">
+                  <ng-template matStepLabel>Entrer les languages demandées</ng-template>
+
+
+                    <section class="example-section">
+                     <input type="checkbox" class="example-margin" formControlName="langueAR" value="Arabe"/>Arabe
+                     <input type="checkbox"  class="example-margin" formControlName="langueFR" value="Français"/>Français
+                     <input type="checkbox"  class="example-margin" formControlName="langueEN" value="Anglais"/>Anglais
+                    </section>
+
+
+
+                 
+                  <div>
+                    <button mat-button matStepperPrevious>Précedent</button>
+                    <button mat-button matStepperNext [disabled]="!langueForm.valid" >Suivant</button>
+                  </div>
+                </form>
+              </mat-step>
+
+              <mat-step [stepControl]="competForm">
+                <form [formGroup]="competForm">
+                  <ng-template matStepLabel>Entrer les diplomes demandés</ng-template>
+                  <mat-form-field>
+                    <input matInput placeholder="Nom de diplome" formControlName="nom_diplome" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput placeholder="Date de diplome" formControlName="annee" required>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Précedent</button>
+                    <button mat-button  [disabled]="!competForm.valid" matStepperNext>Suivant</button>
+                  </div>
+                </form>
+              </mat-step>
+
+
+              <mat-step>
+                <ng-template matStepLabel>Verification</ng-template>
+                Verifiez vos données.
+                Vueillez ajouter cet offre de travail?
+                <div>
+                  <button mat-button matStepperPrevious>Précedent</button>
+                  <button mat-dialog-close mat-button (click)="ajoutertravailv2(TravailForm.value,critereForm.value,langueForm.value,competForm.value);">Ajouter</button>
+                </div>
+              </mat-step>
+            </mat-horizontal-stepper>
+
+          </div>
+        </div>
+
+        <!-- ADD STAGE -->
+        
+
+      </mat-card> 
+    </mat-tab>
+    <mat-tab label="Ajouter annonce de stage" > 
+     
+      <mat-card style="background-color: rgba(255, 255, 255 , 0);">
+        
+
+        <div class="card">
+          <div class="card-content">
+            <form [formGroup]='StageForm'>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="PostedeStage" formControlName="poste" name="poste">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="Descriptiondeposte" formControlName="desc"  name="desc">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="Niveau demandé" formControlName="niveau">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="Durée de Stage" formControlName="duree">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="Gouvernorat" formControlName="govern">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row action-btn">
+                <button mat-raised-button style="margin-right: 5px;"  class="btn btn-light" mat-dialog-close mat-button>Annuler</button>
+                <button md-raised-button (click)="AddOffreStage(StageForm.value)" [disabled]="!StageForm.valid" type="submit" class="btn btn-rose" mat-dialog-close>Ajouter</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        
+
+      </mat-card> 
+
+
+    </mat-tab>
+    <mat-tab label="Ajouter annonce de formation" > 
+     
+      <mat-card style="background-color: rgba(255, 255, 255 , 0);">
+        
+
+        <div class="card">
+          <div class="card-content">
+            <form [formGroup]="FormationForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="NomDeFormation" formControlName="nom" name="PostedeTravail">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="DomaineDeFormation" formControlName="domaine"  name="Descriptiondeposte">
+                  </mat-form-field>
+                </div>
+              </div>
+                <div class="col-md-12">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="DescriptionDeFormation" formControlName="desc">
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field color="accent">
+                      <input matInput type="text" placeholder="NiveauMinimum" formControlName="niveau">
+                    </mat-form-field>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="DuréedeTravail" formControlName="duree">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="Prix" formControlName="prix">
+                    <span matPrefix>DT &nbsp;</span>
+                  </mat-form-field>
+                </div>
+              </div>
+              
+              <div class="row action-btn">
+                <button mat-raised-button style="margin-right: 5px;"  class="btn btn-light" mat-dialog-close mat-button>Close</button>
+                <button [disabled]="!FormationForm.valid" md-raised-button (click)="AddOffreFormation(FormationForm.value)"  type="submit"   class="btn btn-rose" mat-dialog-close>Ajouter</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        
+
+      </mat-card> 
+
+
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+  <app-navbar title="Price Table"></app-navbar>
+  <div class="row page-title">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="row" *ngFor="let c of companies">
+            <div class="col-md-4 page-title">
+              <div class="card card-raised">
+                <h6>{{c.Name}}</h6>
+                <div class="icon">
+                  <i class="material-icons">person</i>
+                </div>
+                <h3 class="card-title" style="color:green;" *ngIf="c.IsRecruiting == 1">Recruiting</h3>
+                <h3 class="card-title" style="color:red;" *ngIf="c.IsRecruiting == 0">Not recruiting</h3>
+                <p class="card-description text-center">
+                  {{c.Description}}
+                </p>
+                <button *ngIf="c.IsRecruiting == 1"  mat-raised-button class="btn btn-rose btn-round">Contact company</button>
+                <button *ngIf="c.IsRecruiting == 0" disabled mat-raised-button class="btn btn-rose btn-round">Contact</button>
+              </div>
+            </div>
+
+      </div>
+    </div>
+  </div>
+</div>

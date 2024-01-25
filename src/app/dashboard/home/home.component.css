@@ -1,0 +1,374 @@
+.card{
+    padding: 20px 20px 15px 20px;
+  }
+  
+  .card small{
+    font-weight: 300;
+  }
+  
+  .h-tab{
+    margin-top: 35px;
+  }
+  
+  .tab-content{
+    display: none;
+  }
+  
+  .h-tab .tab-link.active{
+    background-color: #ff9800 !important;
+    color: #FFF !important;
+    box-shadow: 0 14px 26px -12px rgba(255, 152, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(255, 152, 0, 0.2) !important;
+  }
+  
+  .v-tab .tab-link.active{
+    background-color: #00bcd4 !important;
+    color: #FFF !important;
+    box-shadow: 0 14px 26px -12px rgba(0, 188, 212, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2) !important;
+  }
+  
+  .v-tab .tab-link{
+    margin-bottom: 10px;
+  }
+  
+  .h-tab .tab-link, .v-tab .tab-link{
+    box-shadow: none !important;
+    background-color: transparent !important;
+    color: #555 !important;
+  }
+  
+  .h-tab .tab-link:hover, .v-tab .tab-link:hover{
+    background-color: rgba(200, 200, 200, 0.2) !important;
+  }
+  
+  .h-tab .tab-link.active:hover{
+    background-color: #ff9800 !important;
+  }
+  
+  .v-tab .tab-link.active:hover{
+    background-color: #00bcd4 !important;
+  }
+  
+  .h-tab .tab-content{
+    padding-top: 20px;
+  }
+  
+
+
+
+
+  [class*="entypo-"] {
+    width: 1em;
+    height: 1em;
+  }
+  
+  body {
+    background: #252827;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  a,
+  span,
+  h1,
+  h2,
+  h3,
+  span {
+    text-decoration: none;
+    color: #999;
+  }
+  
+  a:hover {
+    color: #777;
+  }
+  
+  h1 {
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 1.5px;
+    color: #999;
+    font-weight: 100;
+    font-size: 2.4em;
+    margin: 0;
+    border-bottom: 1px solid #777;
+    padding-bottom: 0.2em;
+  }
+  
+  h2 {
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 1.5px;
+    color: #999;
+    font-weight: 100;
+    font-size: 1.0em;
+  }
+  
+  #content {
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .timeline {
+    border-left: 0.25em solid #ec407a;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2em auto;
+    line-height: 1.4em;
+    padding: 1em;
+    padding-left: 3em;
+    list-style: none;
+    text-align: left;
+    margin-left: 10em;
+    margin-right: 3em;
+    border-radius: 0.5em;
+    min-width: 22em;
+  }
+  
+  .stepnumber {
+    min-width: 20em;
+    width: 100%;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position: relative;
+    color:black;
+  }
+  
+  .timeline .stepnumber:before,
+  .timeline .stepnumber:after {
+    position: absolute;
+    display: block;
+    top: 1em;
+    color:black;
+  }
+  
+  .timeline .stepnumber:before {
+    left: -15em;
+    color: rgba(255, 255, 255, 0.8);
+    content: attr(data-date);
+    text-align: right;
+    font-weight: 100;
+    font-size: 0.9em;
+    min-width: 9em;
+    color:black;
+  }
+  
+  .timeline .stepnumber:after {
+    box-shadow: 0 0 0 0.2em #ec407a;
+    left: -3.5em;
+    background: #313534;
+    border-radius: 50%;
+    height: 0.75em;
+    width: 0.75em;
+    content: "";
+  }
+  
+  .timeline .stepnumber .member-location,
+  .timeline .stepnumber .stepcontent {
+    display: block;
+  }
+  
+  
+  .stepinfo {
+    padding: 10px;
+    text-align: left;
+    position: relative;
+  }
+  
+  .stepinfo > h1 {
+    font-weight: bold;
+    font-size: 1.4em;
+  }
+  
+  .member-location a:before {
+    margin-right: 5px;
+  }
+  
+  .member-location {
+    text-indent: 2px;
+  }
+  
+  .follow,
+  .options {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: #D3D3D3;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 0 0 #C0C0C0;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  
+  .follow:hover,
+  .options:hover {
+    box-shadow: 0 1px 0 0 #C0C0C0;
+    box-sizing: border-box;
+    vertical-align: bottom;
+    margin-bottom: -1px;
+  }
+  
+  .member-socials {
+    display: inline-block;
+    font-weight: bold;
+    vertical-align: bottom;
+    line-height: 8px;
+  }
+  
+  .member-socials li {
+    display: inline-block;
+  }
+  
+  .shots-number,
+  .followers {
+    font-weight: normal;
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+  
+  .member-contact {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  
+  .member-contact li {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .member-shots-number {
+    padding-right: 6px;
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+
+
+
+  /*  ENTREPRISE TIMELINE */
+
+
+  .etimeline {
+    border-left: 0.25em solid #6394d4;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2em auto;
+    line-height: 1.4em;
+    padding: 1em;
+    padding-left: 3em;
+    list-style: none;
+    text-align: left;
+    margin-left: 10em;
+    margin-right: 3em;
+    border-radius: 0.5em;
+    min-width: 22em;
+  }
+  
+  .stepnumber {
+    min-width: 20em;
+    width: 100%;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position: relative;
+    color:black;
+  }
+  
+  .etimeline .stepnumber:before,
+  .etimeline .stepnumber:after {
+    position: absolute;
+    display: block;
+    top: 1em;
+    color:black;
+  }
+  
+  .etimeline .stepnumber:before {
+    left: -15em;
+    color: rgba(255, 255, 255, 0.8);
+    content: attr(data-date);
+    text-align: right;
+    font-weight: 100;
+    font-size: 0.9em;
+    min-width: 9em;
+    color:black;
+  }
+  
+  .etimeline .stepnumber:after {
+    box-shadow: 0 0 0 0.2em #6394d4;
+    left: -3.5em;
+    background: #313534;
+    border-radius: 50%;
+    height: 0.75em;
+    width: 0.75em;
+    content: "";
+  }
+  
+  .etimeline .stepnumber .member-location,
+  .etimeline .stepnumber .stepcontent {
+    display: block;
+  }
+
+  /* ADMIN NOTES */
+
+
+  
+  #description{
+    height: 100px;
+
+}
+
+.form-control{
+  background:none;
+  border: none;
+  border-bottom: solid;
+  border-radius: 0px;
+  border-width: 1px;
+  color: white;
+  height: 358px;
+  min-height: 300px;
+  max-height: 505px;
+  color:white;
+
+   }
+  
+
+   .notesbtn{
+    background-color: #0a0a0a;
+    border-radius: 5px;
+    height: 35px;
+    border: none;
+    margin-top: 5px;
+    color:white;
+    transition: margin-top 1s;
+  }
+    
+  
+  .notesbtn:hover{
+    margin-top: 8px;
+    box-shadow: #00bcd4;
+  }
+  
+  
+   .form-control:focus{
+    box-shadow: none;
+    border:none;
+
+   }
+
+   .review {
+      color:white;
+      margin: 10px 10px 10px 10px;
+      width:505px;
+      margin-left:30%;
+      padding : 10px;
+      
+      background-color: rgba(59, 59, 59, 0.753);
+      
+       }
+
+       @media (max-width: 700px) {
+          .review {
+              margin: 10px 10px 10px 10px;
+              width:505px;
+              padding : 10px;
+              
+              background-color: #15191C;
+              
+               }
+              }
+              

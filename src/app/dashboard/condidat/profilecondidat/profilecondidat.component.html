@@ -1,0 +1,410 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'">
+  <app-navbar title="Profile Condidat" icon='person'></app-navbar>
+  <div class="row" style="margin-top: 30px;">
+
+
+    <div class="col-md-8" *ngIf="showEdit" style=" width: 100%;">
+      <div class="card" style="width: 700px; margin-left: 150px ;">
+        <div class="card-header">
+          <i class="material-icons">perm_identity</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Edit Profile -
+            <small class="category">Complete your profile</small>
+          </h4>
+          <div  *ngFor="let p of profiledata">
+            <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile(updateProfileForm.value)">
+              <div class="row"  >
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="nom" placeholder="Nom et Prenom" value="{{p.nom}}">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="cin" placeholder="NCIN" value="{{p.cin}}">
+                  </mat-form-field>
+                </div>
+  
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="age" placeholder="Age" value="{{p.age}}">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="telephone" placeholder="Télephone" value="{{p.telephone}}">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="adresse" placeholder="Adresse" value="{{p.adresse}}">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field color="accent">
+                    <input matInput type="text" formControlName="email" placeholder="Addresse e-mail" value="{{p.email}}">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6">
+              <mat-form-field style="width: 100%;">
+                <mat-label> <mat-icon aria-hidden="false" aria-label="Example home icon">work</mat-icon> Selectionner votre domaine 
+    
+                </mat-label>
+                <mat-select formControlName="domaine" required>
+                  <mat-option value="Informatique">Informatique</mat-option>
+                  <mat-option value="Mecanique">Mecanique</mat-option>
+                  <mat-option value="Electrique">Electrique</mat-option>
+                  <mat-option value="Business">Business</mat-option>
+                  <mat-option value="Industrie">Industrie</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+              </div>
+             
+              <div class="row action-btn">
+                
+              <button mat-raised-button style="margin-right: 5px;"  class="btn btn-light" (click)="toggleEdit()">Annuler</button>
+                <button md-raised-button type="submit" class="btn btn-rose">Modifier profile</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4" *ngIf="!showEdit" style=" width: 100%; margin-bottom: 15px;">
+      <div class="card right-profile" style="width: 500px; margin-left: 260px ;">
+        <div class="profile">
+          <img src="../../../assets/user.png" alt="profile"/>
+        </div>
+        <h6 style="margin-bottom: -85px;">Les Informations personnel</h6>
+        <div class="pinfo" *ngFor="let p of profiledata" >
+          <table style="margin-left: 60px;">
+            <tr>
+              <h4 class="text-center" style="margin-left:73px;" *ngIf="p.working == 1">Statut : Employé</h4>
+
+              <h4  style="margin-left:70px;" *ngIf="p.working == 0">Status : Chômeur</h4>
+            </tr>
+
+              <tr>
+                <button (click)="Demissioner()" *ngIf="p.working == 1" style="margin-left:100px;" mat-button color="accent" aria-label="Resign" class="resignbtn">
+                  Démissionner <mat-icon>work</mat-icon>
+                </button>
+            </tr>
+            <tr>
+              <td class="pinfotd">
+              
+        <label>Nom et Prénom</label>
+        </td>
+        <td >
+          {{p.nom}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <label>Age </label>
+      </td>
+      <td>
+        {{p.age}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Addresse e-mail</label>
+      </td>
+      <td>
+        {{p.email}}
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Address</label>
+        </td>
+        <td>
+          {{p.adresse}}
+        </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Télephone</label>
+          </td>
+          <td>
+           {{p.telephone}}
+          </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Domaine</label>
+            </td>
+            <td>
+             {{p.domaine}}
+            </td>
+            </tr>
+
+      </table>
+      </div>
+        <button mat-raised-button class="btn btn-rose btn-round" (click)="toggleEdit()">Modifier Profile</button>
+      </div>
+    </div>
+
+    <br>
+    <h2 class="text-center">Voir et editer votre CV</h2><br>
+<div style=" width: 100%;" *ngIf="!showEditCV "  >
+    <div  *ngIf="CVdata" class="card right-profile" style="width: 500px; margin-left: 275px ; margin-top: 10px;">
+      <h6 style="margin-top: 5px;">CV électronique</h6>
+      <div *ngIf="CVdata.length == 0;" >
+        <div class="pinfo" style="color: rgb(180,40,40); margin-top: 10px; text-align: center;">
+          veuillez ajouter vos données de CV pour accéder à toutes les fonctionnalités de cette application
+      </div>
+      </div>
+      <div *ngIf="CVdata.length != 0;">
+      <div class="pinfo" *ngFor="let cv of CVdata;">
+        <table style="margin-left: 60px; margin-top: -80px;">
+          <tr>
+            <td class="pinfotd">
+              
+      <label>Niveau </label>
+      </td>
+      <td >
+       Niveau bac + {{cv.Niveau}} <br>
+
+      </td>
+    </tr>
+          <tr>
+            <td class="pinfotd">
+
+      <label>Langues</label>
+      </td>
+      <td >
+        <div  *ngFor="let l of cv.Langue.language">
+          <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+            <img *ngIf="l == 'Anglais';" src="../../../../assets/flags/gb.svg"  height="15px" width="30px"/>
+            <img *ngIf="l == 'Arabe';" src="../../../../assets/flags/tn.svg"  height="15px" width="30px"/>
+            <img *ngIf="l == 'Francais';" src="../../../../assets/flags/fr.svg"  height="15px" width="30px"/>
+            {{l}}</mat-list-item> 
+            </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <label>Compétences </label>
+    </td>
+    <td><br>
+      <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">Nom diplome : {{cv.nom_diplome}}</mat-list-item> 
+      <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">Annee diplome : {{cv.annee_diplome}}</mat-list-item> 
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label>Formations</label>
+    </td>
+    <td><br>
+      <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+        Domaine de formation : {{cv.nom_formation}}</mat-list-item> 
+      <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+        Durée de formation  : {{cv.duree_formation}} (mois)</mat-list-item> 
+    </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Experience professionnelles</label>
+      </td>
+      <td>
+        <br>
+      <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+        Nom entreprise : {{cv.experience_entreprise}}</mat-list-item> 
+      <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+        Domaine de l'experience  : {{cv.nom_experience}}</mat-list-item> 
+        <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+          duree de l'experience  : {{cv.duree_experience}} (mois)</mat-list-item> 
+      </td>
+      </tr>
+      
+    </table>
+    </div>
+  </div>
+      <button *ngIf="CVdata.length != 0;" mat-raised-button class="btn btn-rose btn-round" (click)="toggleEditCV()">Modifier votre CV</button>
+      <button *ngIf="CVdata.length == 0;" mat-raised-button class="btn btn-rose btn-round" (click)="toggleEditCV()">Creer votre CV</button>
+    </div>
+
+  </div>
+
+
+  <div class="col-md-8" *ngIf="showEditCV" style=" width: 100%;">
+    <div class="card" style="width: 700px; margin-left: 150px ;">
+      <div class="card-header">
+        <i class="material-icons">insert_drive_file</i>
+      </div>
+      <div class="card-content">
+        <h4 class="card-title">Modifier CV  -
+          <small class="category">Completer votre CV</small>
+        </h4>
+        <form [formGroup]="CVForm" (ngSubmit)="updateCV(CVForm.value)">
+
+          <!-- ADD CV -->
+          <div class="row" *ngIf="CVdata.length == 0;" >
+            <label id="labelcv" class="textarea-label">Niveau</label>
+            <div class="col-md-12">
+              
+        
+              <section class="example-section" >
+                Niveau bac + <select name="bac" formControlName="niveau" >
+                  <option *ngFor='let item of [].constructor(9); let i = index' value="{{i}}">{{i}}</option>
+                </select>
+               </section>
+
+            </div><br>
+            <label id="labelcv" class="textarea-label">Langues</label>
+            <div class="col-md-12">
+              
+              
+              <section class="example-section">
+                <input type="checkbox" class="example-margin"  formControlName="langueAR" value="Arabe"/>Arabe
+                <input type="checkbox"  class="example-margin" formControlName="langueFR" value="Français"/>Français
+                <input type="checkbox"  class="example-margin"  formControlName="langueEN" value="Anglais"/>Anglais
+               </section>
+
+            </div><br>
+            <label id="labelcv" class="textarea-label">Formations</label><br>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" formControlName="formation_nom" matInput placeholder="Nom de formation"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" formControlName="formation_duree" matInput placeholder="durée de formation"></textarea>
+              </mat-form-field>
+            </div>
+            <label id="labelcv" class="textarea-label">Compétences</label><br>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" matInput formControlName="diplome_nom" placeholder="Nom de diplome"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" formControlName="diplome_annee" matInput placeholder="Année de diplome"></textarea>
+              </mat-form-field>
+            </div>
+           
+
+            
+            <label id="labelcv" class="textarea-label">Experience professionnelles</label><br>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" formControlName="experience_nomEntreprise" matInput placeholder="Nom de l'entreprise où vous avez eu de l'expérience"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+            <mat-form-field color="accent">
+              <textarea id="cvtextarea" formControlName="experience_nomExperience" matInput placeholder="Entrer vos experiences "></textarea>
+            </mat-form-field>
+            </div>
+            <div class="col-md-6">
+          <mat-form-field color="accent">
+            <textarea id="cvtextarea" matInput formControlName="experience_dureeExperience" placeholder="Duree de l'experience en année "></textarea>
+          </mat-form-field>
+        </div>
+          </div>
+
+          <!-- EDIT CV -->
+          <div>
+          <div class="row"  *ngFor="let cv of CVdata;" >
+            
+            <label id="labelcv" class="textarea-label">Niveau</label>   <b class="urcvinfo">  (Votre niveau : {{cv.Niveau}})</b>
+            <div class="col-md-12">
+              
+          
+              <section class="example-section" >
+                Niveau bac + <select name="bac" formControlName="niveau" >
+                  <option *ngFor='let item of [].constructor(9); let i = index' value="{{i}}">{{i}}</option>
+                </select>
+               </section>
+
+            </div><br>
+            <label id="labelcv" class="textarea-label">Langues</label> <b class="urcvinfo">(Vos languages : <b class="urcvinfo" *ngFor="let l of cv.Langue.language">{{l}}  </b>  )</b>
+            <div class="col-md-12">
+              
+              
+              <section class="example-section">
+                <input type="checkbox" class="example-margin"  formControlName="langueAR" value="Arabe"/>Arabe
+                <input type="checkbox"  class="example-margin" formControlName="langueFR" value="Français"/>Français
+                <input type="checkbox"  class="example-margin"  formControlName="langueEN" value="Anglais"/>Anglais
+               </section>
+
+            </div><br>
+            <label id="labelcv" class="textarea-label">Formations</label><br>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" value="{{cv.nom_formation}}" formControlName="formation_nom" matInput placeholder="Nom de formation"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" value="{{cv.duree_formation}}" formControlName="formation_duree" matInput placeholder="durée de formation"></textarea>
+              </mat-form-field>
+            </div>
+            <label id="labelcv" class="textarea-label">Compétences</label><br>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" value="{{cv.nom_diplome}}" matInput formControlName="diplome_nom" placeholder="Nom de diplome"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" style="resize: none;" value="{{cv.annee_diplome}}" formControlName="diplome_annee" matInput placeholder="Année de diplome"></textarea>
+              </mat-form-field>
+            </div>
+           
+
+            
+            <label id="labelcv" class="textarea-label">Experience professionnelles</label><br>
+            <div class="col-md-6">
+
+              <mat-form-field color="accent">
+                <textarea id="cvtextarea" value="{{cv.experience_entreprise}}" formControlName="experience_nomEntreprise" matInput placeholder="Nom de l'entreprise où vous avez eu de l'expérience"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+            <mat-form-field color="accent">
+              <textarea id="cvtextarea" value="{{cv.nom_experience}}" formControlName="experience_nomExperience" matInput placeholder="Entrer vos experiences "></textarea>
+            </mat-form-field>
+            </div>
+            <div class="col-md-6">
+          <mat-form-field color="accent">
+            <textarea id="cvtextarea" value="{{cv.duree_experience}}" matInput formControlName="experience_dureeExperience" placeholder="Duree de l'experience en année "></textarea>
+          </mat-form-field>
+        </div>
+          </div>
+        </div>
+          <div class="row action-btn">
+            <button mat-raised-button style="margin-right: 5px;"  class="btn btn-light" (click)="toggleEditCV()">Annuler</button>
+            <button *ngIf="CVdata.length != 0;" [disabled]="!CVForm.valid" md-raised-button type="submit" class="btn btn-rose">Enregistrer CV</button>
+            <button *ngIf="CVdata.length == 0;" [disabled]="!CVForm.valid" md-raised-button type="submit" class="btn btn-rose">Creer CV</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>

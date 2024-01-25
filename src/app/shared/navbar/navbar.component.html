@@ -1,0 +1,31 @@
+<div class="nav-bar" *ngIf="isLogged;">
+  <div class="left-part">
+    <button mat-mini-fab id="nav-left-button"><i class="material-icons" style="font-size:18px;">{{icon}}</i></button>
+    <h4>{{ title }}</h4>
+  </div>
+  <div class="right-part">
+    <div class="right-part" id="nav-right">
+
+      <b>{{username}}</b>
+      <button mat-icon-button [matMenuTriggerFor]="menup"><i class="material-icons ">person</i></button>
+
+      <mat-menu #menup="matMenu" style="padding-left: 10px;">
+
+        <a *ngIf="acctype === 'Candidat';" routerLink="/dashboard/components/condidat/profilecondidat">
+          <button mat-menu-item><i class="material-icons icon-btn ">person</i>Profile</button>
+        </a>
+        <a *ngIf="acctype === 'Entreprise';" routerLink="/dashboard/entrepriseprofile">
+          <button mat-menu-item><i class="material-icons icon-btn">person</i>Profile</button>
+        </a>
+        <a *ngIf="acctype === 'Admin';" routerLink="/dashboard/profile">
+          <button mat-menu-item><i class="material-icons icon-btn">person</i>Profile</button>
+        </a>
+        
+        <button  (click)="logout()" mat-menu-item><i class="material-icons icon-btn">power_settings_new</i>Sign out</button>
+      </mat-menu>
+    </div>
+    <div id="menu">
+      <button mat-icon-button (click)="menuClick()"><i class="material-icons">menu</i></button>
+    </div>
+  </div>
+</div>

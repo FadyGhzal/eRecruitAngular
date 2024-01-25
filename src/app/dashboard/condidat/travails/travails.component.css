@@ -1,0 +1,87 @@
+.card{
+    padding: 25px 30px 20px 30px;
+    display: inline-flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    min-height: 440px;
+    margin-left: 40px;
+    margin-right: 0px;
+  }
+
+  .card-body{
+      text-align: center;
+    align-items: center;
+    border: solid 1px;
+    border-color: rgb(241, 241, 241);
+     margin-top: 10px;
+      min-height: 200px;
+      width: 280px;
+      border-radius: 10px;
+  }
+  
+  .card h6, p {
+    color: #999;
+  }
+  
+  .icon{
+    margin-top: 20px;
+    width: 130px;
+    height: 130px;
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .icon i{
+    font-size: 55px;
+    color: #e91e63;
+  }
+  
+  .card-title{
+    margin-top: 30px;
+    margin-bottom: 3px;
+  }
+  
+  .card-description{
+    margin-bottom: 20px;
+  }
+  
+
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  }
+
+  .row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+.fbtn{
+    background-color: rgb(148, 148, 148); 
+    color:white;
+    transition: background-color 1s;
+}
+
+  .fbtn:hover{
+    background-color: rgb(204, 204, 204); 
+    color:black;
+
+  }
+  

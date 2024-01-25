@@ -1,0 +1,81 @@
+<div>
+  <div *ngIf="CVData">
+    <div *ngIf="CVData.length == 0;">
+      Ce candidat n'a pas encore ajouté son CV.
+      </div>
+  </div>
+  <div  *ngIf="CVData" class="card right-profile" style="width: 500px; margin-top: 10px;">
+    <h6 style="margin-top: 5px;">CV électronique</h6>
+    <div *ngIf="CVData.length != 0;">
+    <div class="pinfo" *ngFor="let cv of CVData;">
+      <table style="margin-left: 60px; margin-top: -80px;">
+        <tr>
+          <td class="pinfotd">
+            
+    <label>Niveau </label>
+    </td>
+    <td >
+     Niveau bac + {{cv.Niveau}} <br>
+
+    </td>
+  </tr>
+        <tr>
+          <td class="pinfotd">
+
+    <label>Langues</label>
+    </td>
+    <td >
+      <div  *ngFor="let l of cv.Langue.language">
+        <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+          <img *ngIf="l == 'Anglais';" src="../../../../assets/flags/gb.svg"  height="15px" width="30px"/>
+          <img *ngIf="l == 'Arabe';" src="../../../../assets/flags/tn.svg"  height="15px" width="30px"/>
+          <img *ngIf="l == 'Francais';" src="../../../../assets/flags/fr.svg"  height="15px" width="30px"/>
+          {{l}}</mat-list-item> 
+          </div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <label>Compétences </label>
+  </td>
+  <td><br>
+    <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">Nom diplome : {{cv.nom_diplome}}</mat-list-item> 
+    <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">Annee diplome : {{cv.annee_diplome}}</mat-list-item> 
+  </td>
+</tr>
+<tr>
+  <td>
+    <label>Formations</label>
+  </td>
+  <td><br>
+    <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+      Domaine de formation : {{cv.nom_formation}}</mat-list-item> 
+    <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+      Durée de formation  : {{cv.duree_formation}} (mois)</mat-list-item> 
+  </td>
+  </tr>
+  <tr>
+    <td>
+      <label>Experience professionnelles</label>
+    </td>
+    <td>
+      <br>
+    <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+      Nom entreprise : {{cv.experience_entreprise}}</mat-list-item> 
+    <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+      Domaine de l'experience  : {{cv.nom_experience}}</mat-list-item> 
+      <mat-list-item role="listitem" style="height:20px; background-color: rgba(222,222,222,0.5);">
+        duree de l'experience  : {{cv.duree_experience}} (mois)</mat-list-item> 
+    </td>
+    </tr>
+    <tr>
+      
+    </tr>
+  </table><br>
+  <button  class="btn btn-light closebtndialog" style="width: 100%; background: linear-gradient(60deg, #548cd6, #6394d4);" mat-dialog-close>Fermer</button>
+  </div>
+</div>
+  </div>
+
+</div>

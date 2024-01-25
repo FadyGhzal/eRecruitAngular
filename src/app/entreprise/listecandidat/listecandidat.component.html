@@ -1,0 +1,137 @@
+<div class="container" *ngIf="isLogged && accountType == 'Entreprise'" >
+  <app-navbar title="Les Condidats" icon='supervised_user_circle'></app-navbar>
+
+<!-- SEARCH CANDIDATS -->
+<mat-accordion *ngIf="!showFav"><br>
+  <mat-expansion-panel  style="width: 77%;margin-left: 76px;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Chercher un candidat <span style="margin-left: 10px;" class="
+              glyphicon glyphicon-search"></span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="searchForm" (ngSubmit)="filterCandidats(searchForm.value);">
+          <mat-form-field style="width: 40%;">
+            <mat-label><mat-icon aria-hidden="false" aria-label="Example home icon">work</mat-icon> Selectionner un domaine 
+            </mat-label>
+            <mat-select  formControlName="domaine" (selectionChange)="onChange($event)">
+              <mat-option *ngFor="let d of domaines" value="{{d}}">{{d}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width: 40%; margin-left: 50px;">
+            <mat-label> <mat-icon aria-hidden="false" aria-label="Example home icon">school</mat-icon> Selectionner un niveau 
+
+            </mat-label>
+            <mat-select formControlName="niveau" (selectionChange)="onChange($event)">
+              <mat-option *ngFor='let item of [].constructor(9); let i = index' value="{{i}}">{{i}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button type="submit" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+            <mat-icon>filter_list</mat-icon>
+          </button>
+          <button type="reset" (click)="resetCandidatsFilter();" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </form>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<br>
+<button *ngIf="showFav" (click)="toggleShowFavorite()" mat-raised-button style="width:20%; margin-left: 7.4%;">Voir tous les candidats
+  <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:rgb(35, 127, 212);">person</mat-icon>
+</button>
+<button *ngIf="!showFav" (click)="toggleShowFavorite()" mat-raised-button style="width:20%; margin-left: 7.4%;">Voir la liste des favoris
+  <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:rgb(212, 141, 35);">star</mat-icon>
+</button>
+<br>
+<!-- CANDIDATS LIST  -->
+<div *ngIf="!showFav;">
+  <div class="row" *ngIf="candidats">
+  <div class="col-md-12">
+    <div *ngIf="candidats.length == 0">
+      Il n'y a pas de candidats.
+    </div>
+    <div *ngIf="candidats.length != 0" class="row" style="margin-left: 0px;" >
+      <div class="col-md-4" *ngFor="let c of candidats">
+
+    <mat-card class="example-card">
+
+
+        
+      <mat-icon  class="favbtn" (click)="favoriteCandidat(c.id,c.nom)"
+       matTooltip="Ajouter ce candidat a la liste des favourites">star_border</mat-icon>
+      <mat-card-header>
+      
+        <img mat-card-avatar src="../../../assets/user.png"/>
+        <mat-card-title>{{c.nom}}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content><br>
+       <b>Full Name : {{c.nom}}</b> <br>
+       <b>Age : {{c.age}}</b><br>
+      
+       <b>Phone : {{c.telephone}}</b><br>
+       <b>Email : {{c.email}}</b><br>
+       <b>Address : {{c.adresse}}</b><br>
+       <b>Niveau : Bac + {{c.CandidatNiveau}}</b><br>
+       <b>Domaine : {{c.domaine}}</b><br>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="openSeeCV(c.id)" mat-stroked-button color="accent" style="width: 150px;">Read CV</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  </div>
+
+  </div>
+</div>
+</div>
+
+<!-- FAV CANDIDATS LIST -->
+
+<!-- CANDIDATS LIST  -->
+<div *ngIf="showFav;">
+<div class="row" *ngIf="favcandidats">
+  <div class="col-md-12">
+    <div *ngIf="favcandidats.length == 0">
+      Il n'y a pas de candidats favoris.
+    </div>
+    <div *ngIf="favcandidats.length != 0" class="row" style="margin-left: 0px;" >
+      <div class="col-md-4" *ngFor="let c of favcandidats">
+
+    <mat-card class="example-card">
+
+      <mat-icon (click)="unfavoriteCandidat(c.id,c.nom)" class="favbtn"
+       matTooltip="Supprimer ce candidat de la liste des favourites">star</mat-icon>
+
+
+      <mat-card-header>
+      
+        <img mat-card-avatar src="../../../assets/user.png"/>
+        <mat-card-title>{{c.nom}}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content><br>
+       <b>Full Name : {{c.nom}}</b> <br>
+       <b>Age : {{c.age}}</b><br>
+      
+       <b>Phone : {{c.telephone}}</b><br>
+       <b>Email : {{c.email}}</b><br>
+       <b>Address : {{c.adresse}}</b><br>
+       <b>Niveau : Bac + {{c.CandidatNiveau}}</b><br>
+       <b>Domaine : {{c.domaine}}</b><br>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- <button   *ngIf="true" disabled mat-stroked-button color="accent" style="width: 150px; margin-bottom: 10px;">CONTACT</button> -->
+        <button (click)="openSeeCV(c.id)" mat-stroked-button color="accent" style="width: 150px;">Read CV</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  </div>
+
+  </div>
+</div>
+</div>
+</div>
+

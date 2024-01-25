@@ -1,0 +1,60 @@
+<div class="container" *ngIf="isLogged && accountType == 'Entreprise'" >
+  <app-navbar title="Les demandes de formation" icon="school"></app-navbar>
+  <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="material-icons">school</i>
+      </div>
+      <div class="card-content">
+        
+        <h4 class="card-title">Gestion des Demandes de formation</h4>
+        <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+          <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+        </mat-form-field>
+        <button mat-mini-fab class="search-btn" style="background-color: #548cd6;"><i class="material-icons" style="font-size:18px;">search</i></button>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary fw-bold" style="color:black;">
+              <tr>
+                <th>Nom Candidat</th>
+                <th>NCIN Candidat </th>
+                <th colspan="1"></th>
+                <th>Nom de formation</th>
+                <th>Date de demande</th>
+          
+                <th colspan="2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of demandes">
+                <td>{{e.NomCandidat}}</td>
+                <td>{{e.CinCandidat}}</td>
+                <td><button class="btn btn-light" (click)="openSeeCV(e.IdCandidat);">Voir CV  <span class="glyphicon glyphicon-eye-open"></span> </button></td>
+                <td>{{e.Nomformation}}</td>
+                <td>{{e.DATE}}</td>
+                <div *ngIf="e.Status == 0">
+                <td><button (click)="gererDemande(e.IdDemande,'Valider')" class="btn btn-success">Valider  <span class="glyphicon glyphicon-ok-circle"></span></button></td>
+              
+                <td><button (click)="gererDemande(e.IdDemande,'Refuser')"class="btn btn-danger">Refuser  <span class="glyphicon glyphicon-remove-circle"></span> </button></td>
+                </div>
+                <div *ngIf="e.Status == 1">
+                  <td>Demande refusé.</td>
+                <!-- <td><button class="btn btn-danger">Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td> -->
+                
+              </div>
+              <div *ngIf="e.Status == 2">
+                <td>Demande Accepté.</td>
+              <!-- <td><button class="btn btn-danger">Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td> -->
+              
+            </div>
+              </tr>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

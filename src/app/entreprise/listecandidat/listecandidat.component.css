@@ -1,0 +1,75 @@
+.row{
+    margin-top: 10px;
+  }
+  
+  .card{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    margin-top: 40px;
+  }
+  
+  .card-header {
+    position: absolute;
+    text-align: center;
+    background: linear-gradient(60deg, #548cd6, #6394d4);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
+    /*margin: -20px 15px 0;*/
+    border-radius: 3px;
+    padding: 15px;
+    top: -23px;
+  }
+  
+  .card-header i {
+    font-size: 24px;
+    width: 33px;
+    height: 33px;
+    line-height: 33px;
+    color: #fff;
+  }
+  
+  .card-content{
+    position: relative;
+  }
+  
+  .card-title{
+    padding-left: 80px;
+  }
+  
+
+  .example-card {
+    max-width: 220px;
+    align-items: center;
+    text-align: center;
+    min-height: 300px;
+    margin-right: 5px;
+    margin-top: 10px;
+  }
+  
+  .example-header-image {
+    background-image: url('../../../assets/user.png');
+    background-size: cover;
+  }   
+
+
+  .row {margin: 0 45px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.favbtn{
+  margin-top:-20px;
+  margin-left:175px;
+  color:rgb(41, 176, 255);
+  transition: color 1s;
+}
+
+.favbtn:hover{
+  cursor: pointer;
+  color:rgb(13, 74, 109);
+}

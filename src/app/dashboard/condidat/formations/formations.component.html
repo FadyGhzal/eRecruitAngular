@@ -1,0 +1,35 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'">
+  <app-navbar title="Les Annonces de formation" icon="school"></app-navbar>
+    <hr>
+    <div class="row" style="margin-left: -90px;" >
+      <div class="col-lg-4" *ngFor="let f of formations">
+              <div class="col-md-4 page-title">
+                <div class="card card-raised">
+                  <h6>{{f.NomEntreprise}}</h6>
+                  <div class="icon">
+                    <i class="material-icons">school</i>
+                  </div>
+                  <div class="card-body">
+                  <h5 class="card-title" style="color:rgb(99, 99, 99); font-weight: bold;margin-top: 15px; margin-bottom: -40px;">{{f.nom_formation}}</h5>
+                  <hr style="border: none;"><br>
+                  <p class="card-description text-center" style="margin-bottom:-10px;">
+                    Domaine de formation : {{f.domaine_formation}}<br>
+                    Description de formation : {{f.desc_formation}}<br>
+                    Niveau minimum : {{f.niveau_formation}}<br>
+                    Duree de formation : {{f.duree_formation}} Heures<br>
+                    Pix de formation : {{f.prix_formation}} DT<br>
+                  </p>
+                  <hr style="border: none;"><br>
+                </div>
+                  <div class="card-footer" style="margin-top:20px;">
+                    <td><button *ngIf="f.recruiting == 0" disabled class="btn btn-primary">Postuler  <span class="glyphicon glyphicon-send"></span> </button></td>
+                    <td><button *ngIf="f.recruiting == 1" class="btn btn-primary" (click)="Postuler(f.id_entreprise,f.id_formation);">Postuler  <span class="glyphicon glyphicon-send"></span> </button></td>
+                  </div>
+                </div>
+                
+              </div>
+    </div>
+  </div>
+  </div>
+      
+  

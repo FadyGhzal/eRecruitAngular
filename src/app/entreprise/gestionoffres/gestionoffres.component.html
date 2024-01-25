@@ -1,0 +1,159 @@
+<div class="container" *ngIf="isLogged && accountType == 'Entreprise'" >
+  <app-navbar title="Mes annonces" icon="work"></app-navbar>
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="dataForm" >
+        Veulliez selectionner le type des offres : 
+      <select formControlName="typeoff" (change)="onChange($event)" class="form-control">
+        <option value="t" selected>Travails</option>
+        <option value="s">Stages</option>
+        <option value="f">Formations</option>
+     </select> 
+     </form>
+
+<!-- TRAVAILS -->
+      <div class="card" *ngIf="selectedtype == 't'">
+        <div class="card-header">
+          <i class="material-icons">work</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Gestion des offres de travail</h4>
+          <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+            <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+          </mat-form-field>
+          <button mat-mini-fab class="search-btn" style="background-color: #548cd6;"><i class="material-icons" style="font-size:18px;">search</i></button>
+     
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-dark">
+                <tr>
+                  <th></th>
+                  <th>Poste de travail</th>
+                  <th>Description de poste</th>
+                  <th>Durée de travail</th>
+                  <th>Gouvernorat</th>
+                  <th>Criteres</th>
+                  <th>Postulation</th>
+                  <td colspan="2"></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of travails" style="text-align: center;">
+                  <th>{{t.id_travail}}</th>
+                  <td>{{t.poste_travail}}</td>
+                  <td>{{t.desc_travail}}</td>
+
+                  <td class="text-primary">{{t.duree_travail}} Heures/jour</td>
+                  <td>{{t.govern_travail}}</td>
+                  <td><button class="btn btn-light" (click)="openSeeCriteres(t.id_travail);">Voir criteres  <span class="glyphicon glyphicon-eye-open"></span> </button></td>
+                  <td *ngIf="t.recruiting == 1"><button class="btn btn-basic" (click)="togglePostulation('Travails',t.id_travail,'Desactiver')"  style="background: rgb(210,70,90); color:white; width: 120px;">Desactiver <span class="
+                    glyphicon glyphicon-remove"></span></button></td>
+                    <td *ngIf="t.recruiting == 0"><button class="btn btn-basic" (click)="togglePostulation('Travails',t.id_travail,'Activer')"  style="background: rgb(70, 114, 210); color:white; width: 120px;">Activer <span class="glyphicon glyphicon-ok"></span></button></td>
+                  <td><button class="btn btn-danger" (click)="openUpdateTravailForm(t.id_travail);">Modifier  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                  <td><button class="btn btn-danger" (click)="DeleteOffreTravail(t.id_travail);">Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGES -->
+
+      <div class="card" *ngIf="selectedtype == 's';">
+        <div class="card-header">
+          <i class="material-icons">assignment</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Gestion des offres de stages</h4>
+          <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+            <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+          </mat-form-field>
+          <button mat-mini-fab class="search-btn"><i class="material-icons" style="font-size:18px;">search</i></button>
+     
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-dark">
+                <tr>
+                  <th>Poste de Stage</th>
+                  <th>Description de Stage</th>
+                  <th>Niveau minimum</th>
+                  <th>Durée de Stage</th>
+                  <th>Governorat de Stage</th>
+                  <th>Postulation</th>
+                  <td colspan="1"></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let s of stages" style="text-align: center;">
+                  <td>{{s.poste_stage}}</td>
+                  <td>{{s.desc_stage}}</td>
+                  <td>{{s.niveau_stage}}</td>
+               
+                  <td class="text-primary">{{s.duree_stage}}</td>
+                  <td>{{s.govern_stage}}</td>
+                  <td *ngIf="s.recruiting == 1"><button class="btn btn-basic" (click)="togglePostulation('Stages',s.id_stage,'Desactiver')"  style="background: rgb(210,70,90); color:white; width: 120px;">Desactiver <span class="
+                    glyphicon glyphicon-remove"></span></button></td>
+                    <td *ngIf="s.recruiting == 0"><button class="btn btn-basic" (click)="togglePostulation('Stages',s.id_stage,'Activer')"  style="background: rgb(70, 114, 210); color:white; width: 120px;">Activer <span class="glyphicon glyphicon-ok"></span></button></td>
+                  <td><button class="btn btn-danger" (click)="openUpdateStageForm(s.id_stage);">Modifier  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                  <td><button class="btn btn-danger" (click)="DeleteOffreStage(s.id_stage);">Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMATIONS -->
+
+      <div class="card" *ngIf="selectedtype == 'f'">
+        <div class="card-header">
+          <i class="material-icons">school</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Gestion des offres de formations</h4>
+          <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+            <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+          </mat-form-field>
+          <button mat-mini-fab class="search-btn"><i class="material-icons" style="font-size:18px;">search</i></button>
+     
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-dark">
+                <tr>
+                  <th>Nom de formation</th>
+                  <th>Domaine de formation</th>
+                  <th>Description de formation</th>
+                  <th>Niveau minimum</th>
+                  <th>Durée de travail</th>
+                  <th>Prix de formation</th>
+                  <th>Postulation</th>
+                  <td colspan="2"></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let f of formations" style="text-align: center;">
+                  <td>{{f.nom_formation}}</td>
+                  <td>{{f.domaine_formation}}</td>
+                  <td>{{f.desc_formation}}</td>
+                  <td>{{f.duree_formation}} Heures</td>
+                  <td>{{f.niveau_formation}}</td>
+                  <td class="text-primary">{{f.prix_formation}} DT</td>
+                  <td *ngIf="f.recruiting == 1"><button class="btn btn-basic" (click)="togglePostulation('Formations',f.id_formation,'Desactiver')"  style="background: rgb(210,70,90); color:white; width: 120px;">Desactiver <span class="
+                    glyphicon glyphicon-remove"></span></button></td>
+                    <td *ngIf="f.recruiting == 0"><button class="btn btn-basic" (click)="togglePostulation('Formations',f.id_formation,'Activer')"  style="background: rgb(70, 114, 210); color:white; width: 120px;">Activer <span class="glyphicon glyphicon-ok"></span></button></td>
+                  <td><button class="btn btn-danger" (click)="openUpdateFormationForm(f.id_formation);">Modifier  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                  <td><button class="btn btn-danger" (click)="DeleteOffreFormation(f.id_formation);">Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+        <button mat-raised-button id="addbtn" color="accent" (click)="openAddTravailForm()">Ajouter un offre</button>
+
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="container">
+
+        <div class="card" style="margin-top: -5px; width:600px;">
+          <div class="card-content" style="width:600px; margin-top: -50px;">
+            <h3>Score de candidat</h3>
+            <div *ngFor="let s of scoredata;">
+
+              <div class="table-responsive">
+                <table class="table" style="width: 550px;">
+                  <thead class="text-primary fw-bold" style="color:black;">
+                    <tr>
+                  <th></th>
+                  <th>
+                    Critere
+                  </th>
+                  <th>Candidat</th>
+
+                </tr>
+                  </thead>
+                  <tbody>
+                <tr [ngClass]="domainecheck ? 'matches' : 'doesntmatch'" >
+                  <td style="font-weight: bold;">Domaine </td>
+                  <td>
+                    {{s.CritereDomaine}}
+                  </td>
+                  <td>
+                    {{s.CandidatDomaine}}
+                  </td>
+                </tr>
+                <tr [ngClass]="diplomecheck ? 'matches' : 'doesntmatch'">
+                  <td style="font-weight: bold;">Diplome </td>
+                  <td>
+                  {{s.CritereDiplome}}  
+          
+                  </td>
+                  <td>
+                    {{s.CandidatDiplome}}
+                  </td>
+              </tr>
+              <tr [ngClass]="languagecheck ? 'matches' : 'doesntmatch'">
+                <td style="font-weight: bold;">Languages</td>
+                <td>
+                  <div *ngFor="let l of criterelanguages.language">
+                    {{l}}<img *ngIf="l == 'Anglais';" src="../../../../assets/flags/gb.svg"  height="15px" width="30px"/>
+                    <img *ngIf="l == 'Arabe';" src="../../../../assets/flags/tn.svg"  height="15px" width="30px"/>
+                    <img *ngIf="l == 'Francais';" src="../../../../assets/flags/fr.svg"  height="15px" width="30px"/>
+                  </div> 
+                </td>
+                <td>
+                  <div *ngFor="let l of candidatlanguages.language">
+                    {{l}}<img *ngIf="l == 'Anglais';" src="../../../../assets/flags/gb.svg"  height="15px" width="30px"/>
+                    <img *ngIf="l == 'Arabe';" src="../../../../assets/flags/tn.svg"  height="15px" width="30px"/>
+                    <img *ngIf="l == 'Francais';" src="../../../../assets/flags/fr.svg"  height="15px" width="30px"/>
+                  </div> 
+                </td>
+            </tr>
+            <tr [ngClass]="niveaucheck ? 'matches' : 'doesntmatch'">
+              <td style="font-weight: bold;">Niveau </td>
+              <td>
+               Bac + {{s.CritereBac}}  
+              </td>
+              <td>
+                Bac + {{s.CandidatBac}} 
+              </td>
+          </tr>
+          <tr [ngClass]="experiencecheck ? 'matches' : 'doesntmatch'">
+            <td style="font-weight: bold;">Experience </td>
+            <td>
+             {{s.CritereExp}} année(s)
+            </td>
+            <td>
+              {{s.CandidatExp}} année(s)
+            </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+      
+    
+          <td colspan="3" style="text-align: center;"> 
+            <h2 *ngIf="candidatscore <= 2" style="color:rgb(255, 17, 0);">Score : {{candidatscore}} / {{totalscore}}</h2>
+                <h2 *ngIf="candidatscore == 3" style="color:orange;">Score : {{candidatscore}} / {{totalscore}}</h2>
+                <h2 *ngIf="candidatscore >= 4" style="color:rgb(19, 252, 19);">Score : {{candidatscore}} / {{totalscore}}</h2>
+          </td>
+        </tr>
+      </tfoot>
+              </table>
+
+                
+              </div>
+          </div>
+        </div>
+
+</div>

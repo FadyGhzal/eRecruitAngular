@@ -1,0 +1,93 @@
+<div class="logo text-uppercase" [style.color]="normalFontColor" *ngIf="isLogged;" >
+  <img src="../../assets/logow.png" style="margin-right: -10px; margin-left: 15px;" class="logo-img" alt="logo"/>
+E-Recruit
+</div>
+<div class="divider" [style.background-color]="dividerBgColor"></div>
+<div class="sidebar-wrapper" >
+  <div class="nav-container">
+    <ul class="nav">
+     <div *ngIf="accountType === 'Admin';">
+      <li *ngFor="let menuItem of menuItems" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive? (menuItem.children === null? 'active' : '') : ''" [routerLinkActiveOptions]="{exact: true}">
+        <a [style.display]="menuItem.children === null? 'flex' : 'none'" [routerLink]="[menuItem.path]" [style.background-color]="rla.isActive? color : 'transparent'" [style.color]="rla.isActive? activeFontColor : normalFontColor">
+          <i class="material-icons">{{menuItem.icon}}</i>
+          <span>{{menuItem.title}}</span>
+        </a>
+        <div [hidden]="menuItem.children === null" class="collapse-container">
+          <a data-toggle="collapse" [href]="[menuItem.path]" style="padding: 0 15px;" >
+            <i class="material-icons">{{menuItem.icon}}</i>
+            <span>{{menuItem.title}} </span>
+            <b class="caret" [style.color]="normalFontColor"></b>
+          </a>
+          <div id="component" class="collapse" [id]="[menuItem.id]">
+            <ul class="nav">
+              <li *ngFor="let subItem of menuItem.children" routerLinkActive #subrla="routerLinkActive" [ngClass]="subrla.isActive? 'active' : ''">
+                <a [routerLink]="[subItem.path]" [style.background-color]="subrla.isActive? color : 'transparent'" [style.color]="subrla.isActive? activeFontColor : normalFontColor" style="height: 43px;">
+                  <span style="margin-left: 5px; width: 21px;">{{subItem.icon}}</span>
+                  <span>{{subItem.title}}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+
+    </div>
+<div *ngIf="accountType == 'Entreprise';">
+
+
+      <li  *ngFor="let EmenuItem of EmenuItems" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive? (EmenuItem.children === null? 'active' : '') : ''" [routerLinkActiveOptions]="{exact: true}">
+        <a [style.display]="EmenuItem.children === null? 'flex' : 'none'" [routerLink]="[EmenuItem.path]" [style.background-color]="rla.isActive? color : 'transparent'" [style.color]="rla.isActive? activeFontColor : normalFontColor">
+          <i class="material-icons">{{EmenuItem.icon}}</i>
+          <span>{{EmenuItem.title}}</span>
+        </a>
+        <div [hidden]="EmenuItem.children === null" class="collapse-container">
+          <a data-toggle="collapse" [href]="[EmenuItem.path]" style="padding: 0 15px;" >
+            <i class="material-icons">{{EmenuItem.icon}}</i>
+            <span>{{EmenuItem.title}}</span>
+            <b class="caret" [style.color]="normalFontColor"></b>
+          </a>
+          <div id="component" class="collapse" [id]="[EmenuItem.id]">
+            <ul class="nav">
+              <li *ngFor="let subItem of EmenuItem.children" routerLinkActive #subrla="routerLinkActive" [ngClass]="subrla.isActive? 'active' : ''">
+                <a [routerLink]="[subItem.path]" [style.background-color]="subrla.isActive? color : 'transparent'" [style.color]="subrla.isActive? activeFontColor : normalFontColor" style="height: 43px;">
+                  <span style="margin-left: 5px; width: 21px;">{{subItem.icon}}</span>
+                  <span>{{subItem.title}}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </div>
+
+    <div *ngIf="accountType === 'Candidat';">
+
+
+      <li  *ngFor="let CmenuItem of CmenuItems" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive? (CmenuItem.children === null? 'active' : '') : ''" [routerLinkActiveOptions]="{exact: true}">
+        <a [style.display]="CmenuItem.children === null? 'flex' : 'none'" [routerLink]="[CmenuItem.path]" [style.background-color]="rla.isActive? color : 'transparent'" [style.color]="rla.isActive? activeFontColor : 'normalFontColor'" style="height: 43px;">
+          <i class="material-icons">{{CmenuItem.icon}}</i>
+          <span>{{CmenuItem.title}}</span>
+        </a>
+        <div [hidden]="CmenuItem.children === null" class="collapse-container">
+          <a data-toggle="collapse" [href]="[CmenuItem.path]" style="padding: 0 15px;" >
+            <i class="material-icons">{{CmenuItem.icon}}</i>
+            <span>{{CmenuItem.title}}</span>
+            <b class="caret" [style.color]="normalFontColor"></b>
+          </a>
+          <div id="component" class="collapse" [id]="[CmenuItem.id]">
+            <ul class="nav">
+              <li *ngFor="let subItem of CmenuItem.children" routerLinkActive #subrla="routerLinkActive" [ngClass]="subrla.isActive? 'active' : ''">
+                <a [routerLink]="[subItem.path]" [style.background-color]="subrla.isActive? color : 'transparent'" [style.color]="subrla.isActive? activeFontColor : normalFontColor" style="height: 43px;">
+                  <span style="margin-left: 5px; width: 21px;">{{subItem.icon}}</span>
+                  <span>{{subItem.title}}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </div>
+
+    </ul>
+  </div>
+</div>

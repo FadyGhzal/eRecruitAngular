@@ -1,0 +1,34 @@
+<div class="container" *ngIf="isLogged && accountType == 'Candidat'">
+  <app-navbar title="Les Annonces de stage" icon="assignment"></app-navbar>
+    <hr>
+    <div class="row" style="margin-left: -90px;" >
+      <div class="col-lg-4" *ngFor="let s of stages">
+              <div class="col-md-4 page-title">
+                <div class="card card-raised">
+                  <h6>{{s.NomEntreprise}}</h6>
+                  <div class="icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <div class="card-body">
+                  <h5 class="card-title" style="color:rgb(99, 99, 99); font-weight: bold;margin-top: 15px; margin-bottom: -40px;">{{s.poste_stage}}</h5>
+                  <hr style="border: none;"><br>
+                  <p class="card-description text-center" style="margin-bottom:-10px;">
+                    Description de stage : {{s.desc_stage}}<br>
+                    Niveau minimum : {{s.niveau_stage}}<br>
+                    Duree de stage : {{s.duree_stage}} Heures<br>
+                    Governorat de stage : {{s.govern_stage}}<br>
+                  </p>
+                  <hr style="border: none;"><br>
+                </div>
+                  <div class="card-footer" style="margin-top:20px;">
+                    <td><button *ngIf="s.recruiting == 0" disabled class="btn btn-primary" >Postuler  <span class="glyphicon glyphicon-send"></span> </button></td>
+                    <td><button *ngIf="s.recruiting == 1" class="btn btn-primary" (click)="Postuler(s.id_entreprise,s.id_stage  );">Postuler  <span class="glyphicon glyphicon-send"></span> </button></td>
+                  </div>
+                </div>
+                
+              </div>
+    </div>
+  </div>
+  </div>
+      
+  

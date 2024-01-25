@@ -1,0 +1,117 @@
+<div class="container">
+  <app-navbar title="Admin Profile" icon="person"></app-navbar>
+  <div class="row" style="margin-top: 30px">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <i class="material-icons">perm_identity</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Modifier votre Profile
+            <small class="category"></small>
+          </h4>
+          <div  *ngFor="let p of profiledata">
+          <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile(updateProfileForm.value)">
+            <div class="row"  >
+              <div class="col-md-6">
+                <mat-form-field color="accent">
+                  <input matInput type="text" formControlName="nom" placeholder="Nom et Prenom" value="{{p.nom}}">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field color="accent">
+                  <input matInput type="text" formControlName="cin" placeholder="NCIN" value="{{p.cin}}">
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field color="accent">
+                  <input matInput type="text" formControlName="age" placeholder="Age" value="{{p.age}}">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field color="accent">
+                  <input matInput type="text" formControlName="telephone" placeholder="Télephone" value="{{p.telephone}}">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field color="accent">
+                  <input matInput type="text" formControlName="adresse" placeholder="Adresse" value="{{p.adresse}}">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field color="accent">
+                  <input matInput type="text" formControlName="email" placeholder="Addresse e-mail" value="{{p.email}}">
+                </mat-form-field>
+              </div>
+            </div>
+           
+            <div class="row action-btn">
+              <button md-raised-button type="submit" class="btn btn-rose">Modifier profile</button>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card right-profile">
+        <div class="profile">
+          <img src="../../../assets/user.png" alt="profile"/>
+        </div>
+        <div class="pinfo" *ngFor="let p of profiledata" style="margin-top: 100px;">
+          <table style="margin-left: 60px;">
+            <tr>
+              <th class="pinfotd">
+        <label>Nom</label>
+        </th>
+        <td >
+          {{p.nom}}
+        </td>
+      </tr>
+      <tr>
+        <th>
+        <label>Age </label>
+      </th>
+      <td>
+        {{p.age}}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label>Address</label>
+      </th>
+      <td>
+        {{p.adresse}}
+      </td>
+      </tr>
+      <tr>
+        <th>
+          <label>Télephone</label>
+        </th>
+        <td>
+         {{p.telephone}}
+        </td>
+        </tr>
+        <tr>
+      <th>
+        <label>Addresse e-mail</label>
+      </th>
+      <td>
+        {{p.email}}
+      </td>
+      </tr>
+    
+       
+
+      </table>
+      </div>
+       
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container" *ngIf="isLogged && accountType == 'Admin'">
+  <app-navbar title="Les Annonces de travail" icon='work'></app-navbar>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="material-icons">work</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Gestion des offres de travail</h4>
+          <mat-form-field color="#ff0000" style="width: 95%; margin-top:10px;">
+            <input matInput  (keyup)="applyFilter($event)" type="search" placeholder="Search">
+          </mat-form-field>
+          <button mat-mini-fab class="search-btn" style="background-color: #000000;"><i class="material-icons" style="font-size:18px;">search</i></button>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-dark">
+                <tr>
+                  <th>Nom d'entreprise</th>
+                  <th>Poste de travail</th>
+                  <th>Description de poste</th>
+                  <th>Niveau minimum</th>
+                  <th>Durée de travail</th>
+                  <th>Governorat de Travail</th>
+                  <td colspan="1"></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of travails" style="text-align: center;">
+                  <td>{{t.NomEntreprise}}</td>
+                  <td>{{t.poste_travail}}</td>
+                  <td>{{t.desc_travail}}</td>
+                  <td>Bac + {{t.niveau}}</td>
+                  <td class="text-primary">{{t.duree_travail}}</td>
+                  <td>{{t.govern_travail}}</td>
+                  <td><button class="btn btn-danger" (click)="deleteOffre(t.id_travail);" >Supprimer  <span class="glyphicon glyphicon-trash"></span> </button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

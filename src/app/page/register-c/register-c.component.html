@@ -1,0 +1,41 @@
+<div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3" >
+  <div class="card">
+    <div class="card-header">
+       <h5>Inscrivez-vous en tant que candidat</h5>
+    </div>
+    <form [formGroup]="SignupForm" (ngSubmit)="Register(SignupForm)"  autocomplete="off">
+    <p class="tip">Informations du compte</p>
+    <div class="card-form">
+      <div class="form-row">
+        <i class="material-icons">face</i>
+        <mat-form-field color="accent">
+          <input type="text" formControlName="nom" autocomplete="off" matInput placeholder="Nom de Candidat"/>
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <i class="material-icons">email</i>
+        <mat-form-field color="accent">
+          <input type="text" formControlName="email" autocomplete="off" matInput placeholder="Address e-mail"/>
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <i class="material-icons">lock</i>
+        <mat-form-field color="accent">
+          <input type="password" formControlName="pass" autocomplete="off" matInput placeholder="Mot de passe"/>
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <i class="material-icons">done_all</i>
+        <mat-form-field color="accent">
+          <input type="password" formControlName="cpass" autocomplete="off" matInput placeholder="Confirmer mot de passe"/>
+        </mat-form-field>
+      </div>
+      
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="registerbtn" mat-button  [disabled]="!SignupForm.valid">S'inscrire</button>
+
+    </div>
+  </form>
+  </div>
+</div>
